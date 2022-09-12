@@ -66,7 +66,8 @@ def index():
 
             return render_template('results.html', channel_data=channel_data[0:(len(channel_data)-1)])
 
-        except Exception:
+        except Exception as e:
+            print('The Exception message is: ', e)
             return 'something is wrong'
 
     else:
@@ -112,15 +113,15 @@ def scrape():
                 stats.append(mydict)
 
             except exceptions.NoSuchElementException:
-                pass
-                # logging.debug("Encontered processing Issue please try again")
+                print("Encontered processing Issue please try again")
 
             cursor = AWS_Cred()
             to_db_stats(cursor, stats)
 
             return render_template('basicinfo.html', stats1=mydict)
 
-        except Exception:
+        except Exception as e:
+            print('The Exception message is: ', e)
             return 'something is wrong'
 
     else:
@@ -189,7 +190,8 @@ def comments():
             return render_template('comments.html',rev1=rev1[0:(len(rev1)-1)])
 
 
-        except Exception:
+        except Exception as e:
+            print('The Exception message is: ', e)
             return 'something is wrong'
 
 
