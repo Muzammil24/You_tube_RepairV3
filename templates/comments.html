@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Comments</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="table-users">
+        <div class="header">Comments</div>
+        <div class="header">Refresh in Case Data does not Populate</div>
+
+        <table cellspacing="0">
+            <tr>
+                <th>Name</th>
+                <th>Comment</th>
+
+            </tr>
+            {% for Channel in rev1 %}
+            <tr>
+                <td>{{Channel['User_name']}}</td>
+                <td>{{Channel['Comments']}}</td>
+                {% endfor %}
+        </table>
+    </div>
+
+
+</body>
+
+</html>

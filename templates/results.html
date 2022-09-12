@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Review Page</title>
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"> -->
+    <!--    <link rel="stylesheet" href="./style.css">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/styles1.css') }}"> -->
+
+
+</head>
+
+<body>
+
+    <div class="table-users">
+        <div class="header">Channel_data</div>
+        <div class="header">Refresh in Case Data does not Populate</div>
+
+        <table cellspacing="0">
+            <tr>
+                <th>Channel</th>
+                <th>Title</th>
+                <th>ThumbNail</th>
+                <th>Views</th>
+                <th>Length</th>
+                <th>Video_Url</th>
+
+            </tr>
+            {% for Cha in channel_data %}
+            <tr>
+                <td>{{Cha['Channel']}}</td>
+                <td>{{Cha['Title']}}</td>
+                <td><img src="{{Cha['ThumbNail']}}" alt="image alt text"></td>
+                <td>{{Cha['Views']}}</td>
+                <td>{{Cha['Length']}}</td>
+                <td>{{Cha['Video_Url']}}</td>
+                {% endfor %}
+        </table>
+    </div>
+
+
+    <div id="container">
+
+        <div class="content1">
+            <h1 style="text-align: center">Paste the Url from the above for Channel Stats</h1>
+
+            <div class="form" id="cont1">
+
+                <form action="/baseinfo" method="POST">
+                    <input type="text" name="baseinfo" id="baseinfo" , placeholder="Paste Url here">
+                    <input type="submit" value="Search">
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="container2">
+
+        <div class="content">
+            <h1 style="text-align: center">Paste the Url from the above to view Comments</h1>
+
+            <div class="form" id="cont2">
+
+                <form action="/comments" method="POST">
+                    <input type="text" name="comments" id="comments" , placeholder="Paste Url here">
+                    <input type="submit" value="Search">
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
