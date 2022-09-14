@@ -42,9 +42,9 @@ def create_DB(cursor,DB):
 
 
 def to_db_home(cursor,lst_P):
-    sql = 'INSERT INTO youtab (`Title`,`Views`, `Length`, `Video_url`) VALUES (%s,%s,%s,%s)'
+    sql = 'INSERT INTO youtab (`Channel`,`Title`,`Views`, `Length`, `Video_url`) VALUES (%s,%s,%s,%s,%s)'
     for i in lst_P:
-        cursor.execute(sql, (i["Title"], i["Views"], i["Length"], i["Video_Url"]))
+        cursor.execute(sql, (i["Channel"],i["Title"],i["Views"],i["Length"],i["Video_Url"]))
     cursor.connection.commit()
 
 def to_db_stats(cursor,lst_P):
@@ -166,4 +166,41 @@ if __name__ == "__main__":
 
     df = pd.DataFrame(lst, columns=["Channel Name", "Video Title", "Number of Views", "Posted on", "Url"])
     df.to_csv("YouTab.csv")
+
+    ## DO not Run the Below
+
+    ## To create table on RDB - Top Videos table
+    # sql = """
+    # create table youtab
+    # (
+    # `Channel` varchar(200),
+    # `Title` varchar(800),
+    # `Views` varchar(25),
+    # `Length` varchar(25),
+    # `Video_url` varchar(200)
+    # )
+    # """
+    # cursor.execute(sql)
+    # cursor.connection.commit()
+
+    ## To create table on RDB - Stats Table
+    # sql = """
+    # create table youtab_stat
+    # (
+    # `Title` varchar(800),
+    # `Views` varchar(25),
+    # `Date` varchar(25) ,
+    # `Channel` varchar(200),
+    # `Subscribers` varchar(100),
+    # `Description` varchar(750),
+    # `Likes` varchar(25)
+    # )
+    # """
+    # cursor.execute(sql)
+    # cursor.connection.commit()
+
+    # sql = "drop table Name"
+    # cursor.execute(sql)
+    # cursor.connection.commit()
+
 
